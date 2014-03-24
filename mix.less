@@ -1,0 +1,179 @@
+
+//      Size and Position
+// ====================================
+
+// Size
+.size(@width, @height) {  // .size(100, 150);  px
+  height: 0px + @height;
+  width:  0px + @width;
+}
+
+// Center align
+.center() {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+// positions
+.pos (@position, @top:0, @left:0, @zIndex:auto) {
+  left: @left;
+  position: @position;
+  top: @top;
+  z-index: @zIndex;
+}
+
+//      link
+// ====================================
+
+// link hover and focus
+.link-state(@color,@colorHover,@colorFocus) {
+  color: @color;
+  &:hover {
+    color: @color;
+  }
+  &:focus {
+    color: @color;
+  }
+}
+
+//      font
+// ====================================
+
+// font mixin
+.font(@size, @color, @align: left, @font: 'Arial', @line-height: normal) {
+  color: @color;
+  font-size: @size;
+  font-family: @font;
+  line-height: @line-height;
+  text-align: @align;
+}
+
+//          Gradient Tools
+// =================================================
+#gradient {
+
+  // Vertical gradient 2 colors
+  .vertical_2(@startColor: #aaa, @stopColor: #000) {
+    background: mix(@startColor, @stopColor, 50%);   // for ie color mixed
+    background: -webkit-linear-gradient(top,  @startColor 0%,@stopColor 100%);
+    background: linear-gradient(to bottom, @startColor 0%, @stopColor 100%);
+  }
+
+  // Vertical gradient 2 colors and ie9 filter. Not working border-radius and box-shadows in ie9
+  .vertical_2(@startColor: #aaa, @stopColor: #000, @ieNot: 0) when (@ieNot > 0) {
+    background: -webkit-linear-gradient(top,  @startColor 0%,@stopColor 100%);
+    background: linear-gradient(to bottom, @startColor 0%, @stopColor 100%);
+    filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr='%d', endColorstr='%d', GradientType=0)",@{startColor},@{stopColor}));
+  }
+
+   // Vertical gradient 3 colors   and ie9 filter. Not working border-radius and box-shadows in ie9
+  .vertical_3(@startColor: #aaa, @toColor: #aaa, @stopColor: #000, @middleProcent: 50%, @ieNot: 0) when (@ieNot > 0) {
+    background: -webkit-linear-gradient(top,  @startColor 0%, @toColor @middleProcent, @stopColor 100%);
+    background: linear-gradient(to bottom, @startColor 0%,@toColor @middleProcent, @stopColor 100%);
+    filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr='%d', endColorstr='%d', GradientType=0)",@{startColor},@{stopColor}));
+  }
+
+  // Horizontal gradient
+  .horizontal(@startColor: #aaa, @stopColor: #000) {
+    background: mix(@startColor, @stopColor, 50%);   // for ie color mixed
+    background: -webkit-linear-gradient(left,  @startColor 0%,@stopColor 100%);
+    background: linear-gradient(to right, @startColor 0%, @stopColor 100%);
+  }
+
+  // Directional gradient
+  .directional(@startColor: #aaa, @stopColor: #000, @deg: 45deg) {
+    background-image: -webkit-linear-gradient(@deg, @startColor, @stopColor);
+    background-image: linear-gradient(@deg, @startColor, @stopColor);
+    background-color: mix(@startColor, @stopColor, 60%);
+    background-repeat: repeat-x;
+  }
+
+  // Radial gradient
+  .radial(@innerColor: #aaa, @outerColor: #000) {
+    background-image: -webkit-radial-gradient(circle, @innerColor, @outerColor);
+    background-image: radial-gradient(circle, @innerColor, @outerColor);
+    background-color: mix(@innerColor, @outerColor, 60%);
+    background-repeat: no-repeat;
+  }
+}
+
+//        Border Radius Tools
+// ==============================================
+
+
+// Border radius
+.border-radius(@topLeft: 0, @topRight: 0, @bottomRight: 0, @bottomLeft: 0) {    // px
+  border-top-left-radius:     0px + @topLeft;
+  border-top-right-radius:    0px +@topRight;
+  border-bottom-right-radius: 0px +@bottomRight;
+  border-bottom-left-radius:  0px +@bottomLeft;
+}
+
+//      Transition Tools
+// ====================================
+
+// Transition
+.transition(@transition) {
+  -webkit-transition: @transition;
+  transition: @transition;
+}
+
+// Transition all
+.transition-all(@duration: 0.2s, @delay: ease) {
+  -webkit-transition: all @duration @delay;
+  transition: all @duration @delay;
+}
+
+//          Transform Tools
+// ==============================================
+
+// Basic transform
+.transform(@transform) {
+  -webkit-transform: @transform;
+  transform: @transform;
+}
+
+// Rotate
+.rotate(@deg) {
+  .transform(rotate(@deg));
+}
+
+// Scale
+.scale(@ratio) {
+  .transform(scale(@ratio));
+}
+
+// Translate
+.translate(@x, @y) {
+  .transform(translate(@x, @y));
+}
+
+//        More Tools
+// ====================================
+
+// Box sizing
+.box-sizing(@sizing: border-box) {
+  -moz-box-sizing: @sizing;
+  box-sizing: @sizing;
+}
+
+.text-overflow-ellipsis(@width){
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: @width;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
